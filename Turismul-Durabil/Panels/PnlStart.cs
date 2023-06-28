@@ -107,7 +107,8 @@ namespace Turismul_Durabil.Panels
         private void btnInregistrare_Click(object sender, EventArgs e)
         {
 
-
+            this.form.removePnl("PnlStart");
+            this.form.Controls.Add(new PnlInregistrare(form));
 
         }
 

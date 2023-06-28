@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Turismul_Durabil.Mockups
 {
-    public partial class MockupStart : Form
+    public partial class MockupInregistrare : Form
     {
-        public MockupStart()
+        public MockupInregistrare()
         {
             InitializeComponent();
         }
