@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Turismul_Durabil.Panels;
 
 namespace Turismul_Durabil
 {
@@ -15,6 +16,28 @@ namespace Turismul_Durabil
         public Form1()
         {
             InitializeComponent();
+
+            this.Controls.Add(new PnlStart(this));
+
         }
+
+        public void removePnl(string pnl)
+        {
+
+            Control control = null;
+
+            foreach (Control c in this.Controls)
+            {
+
+                if (c.Name.Equals(pnl))
+                {
+                    control = c;
+                }
+
+            }
+
+            this.Controls.Remove(control);
+        }
+
     }
 }
