@@ -46,6 +46,97 @@ namespace Turismul_Durabil.Controllers
         }
 
 
+        public bool verifEmail(string email)
+        {
+
+            for (int i = 0; i < utilizatori.Count; i++)
+            {
+
+                if (utilizatori[i].getEmail() == email)
+                {
+                    return false;
+                }
+
+            }
+
+            return true;
+        }
+
+        public void saveNewClient(string textul)
+        {
+
+            string path = Application.StartupPath + @"/data/Utilizatori.txt";
+
+            File.AppendAllText(path, textul + "\n");
+
+
+        }
+
+        public Utilizator getByid(int id)
+        {
+
+            for (int i = 0; i < utilizatori.Count; i++)
+            {
+                if (id == utilizatori[i].getIdUtilizator())
+                {
+                    return utilizatori[i];
+                }
+            }
+
+            return null;
+        }
+
+        public int generareId()
+        {
+
+            Random random = new Random();
+
+            int id = random.Next();
+
+            while (this.getByid(id) != null)
+            {
+
+                id = random.Next();
+
+
+            }
+
+            return id;
+        }
+
+        public bool verifAut(string email, string parola)
+        {
+
+            for (int i = 0; i < utilizatori.Count; i++)
+            {
+
+                if (utilizatori[i].getEmail() == email && utilizatori[i].getPassword() == parola)
+                {
+                    return true;
+                }
+
+            }
+
+            return false;
+
+        }
+
+        public Utilizator ClientByEmaiParo(string email, string parola)
+        {
+
+            for (int i = 0; i < utilizatori.Count; i++)
+            {
+
+                if (utilizatori[i].getEmail() == email && utilizatori[i].getPassword() == parola)
+                {
+                    return utilizatori[i];
+                }
+
+            }
+
+            return null;
+
+        }
 
 
 
