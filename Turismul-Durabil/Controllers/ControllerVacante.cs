@@ -43,7 +43,10 @@ namespace Turismul_Durabil.Controllers
 
         }
 
-
+        public List<Vacanta> getVacante()
+        {
+            return vacante;
+        }
 
     }
 }

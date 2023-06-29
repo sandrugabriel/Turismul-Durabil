@@ -298,7 +298,7 @@ namespace Turismul_Durabil.Panels
                     string text = controllerUtilizatori.generareId() + "|" + txtNume.Text + "|" + txtPrenume.Text + "|" + txtEmail.Text + "|" + txtParola.Text + "|" + 1;
                     controllerUtilizatori.saveNewClient(text);
                     Utilizator utilizator = new Utilizator(text);
-
+                    this.form.Controls.Add(new PnlVacanta(this.form, utilizator));
                 }
 
 

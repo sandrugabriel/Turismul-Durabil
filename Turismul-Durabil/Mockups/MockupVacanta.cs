@@ -10,11 +10,21 @@ using System.Windows.Forms;
 
 namespace Turismul_Durabil.Mockups
 {
-    public partial class MockupInregistrare : Form
+    public partial class MockupVacanta : Form
     {
-        public MockupInregistrare()
+        public MockupVacanta()
         {
             InitializeComponent();
+        }
+
+        private void tabPage2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pctVanacta_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
