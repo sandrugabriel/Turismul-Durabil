@@ -521,9 +521,9 @@ namespace Turismul_Durabil.Panels
         private void btnReverza_Click(object sender, EventArgs e)
         {
 
-            MessageBox.Show(vacante[index].getnameVacanta());
-
-
+            Vacanta vacanta = vacante[index];
+            this.form.removePnl("PnlVacanta");
+            this.form.Controls.Add(new PnlRervare(form, utilizator, vacanta));
 
         }
 

@@ -42,6 +42,63 @@ namespace Turismul_Durabil.Controllers
             streamReader.Close();
         }
 
+        public Rezervare getByid(int id)
+        {
+
+            for (int i = 0; i < rezervari.Count; i++)
+            {
+                if (id == rezervari[i].getIdRezervare())
+                {
+                    return rezervari[i];
+                }
+            }
+
+            return null;
+        }
+
+        public int generareId()
+        {
+
+            Random random = new Random();
+
+            int id = random.Next();
+
+            while (this.getByid(id) != null)
+            {
+
+                id = random.Next();
+
+
+            }
+
+            return id;
+        }
+
+        public void save(string textul)
+        {
+
+            string path = Application.StartupPath + @"/data/Rezervari.txt";
+
+            File.AppendAllText(path, textul + "\n");
+
+
+        }
+
+        public List<Rezervare> getRezervarileMele(int idUtilizator)
+        {
+
+            List<Rezervare> list = new List<Rezervare>();
+
+            for(int i=0;i<rezervari.Count;i++)
+            {
+                if (rezervari[i].getIdUser() == idUtilizator)
+                {
+                    list.Add(rezervari[i]);
+                }
+            }
+
+            return list;
+        }
 
     }
 }
