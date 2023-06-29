@@ -55,6 +55,9 @@ namespace Turismul_Durabil.Panels
 
         ControllerVacante controllerVacante;
         ControllerReverzari controllerReverzari;
+        ControllerUtilizatori controllerUtilizatori;
+
+        List<Utilizator> utilizatoriList;
 
         int index;
         public PnlVacanta(Form1 form1, Utilizator utilizator1)
@@ -66,6 +69,9 @@ namespace Turismul_Durabil.Panels
             vacante = controllerVacante.getVacante();
             controllerReverzari = new ControllerReverzari();
             index = 0;
+            utilizatoriList = new List<Utilizator>();
+            controllerUtilizatori = new ControllerUtilizatori();
+            utilizatoriList = controllerUtilizatori.getUtilizators();
             rezervarileMele = new List<Rezervare>();
             this.form.Size = new System.Drawing.Size(1028, 790);
             this.form.MinimumSize = new System.Drawing.Size(1028, 790);
@@ -229,25 +235,22 @@ namespace Turismul_Durabil.Panels
             this.btnTranf.Location = new System.Drawing.Point(610, 214);
             this.btnTranf.Name = "btnTranf";
             this.btnTranf.Size = new System.Drawing.Size(180, 70);
-            this.btnTranf.TabIndex = 5;
             this.btnTranf.Text = "Transforma in admin";
-            this.btnTranf.UseVisualStyleBackColor = true;
+            this.btnTranf.Click += new EventHandler(btnTranf_Click);
 
             // btnInregistrare
             this.btnInregistrare.Location = new System.Drawing.Point(400, 213);
             this.btnInregistrare.Name = "btnInregistrare";
             this.btnInregistrare.Size = new System.Drawing.Size(180, 70);
-            this.btnInregistrare.TabIndex = 4;
             this.btnInregistrare.Text = "Inregistrare";
-            this.btnInregistrare.UseVisualStyleBackColor = true;
+            this.btnInregistrare.Click += new EventHandler(btnInregistrare_Click);
 
             // btnRenunta
             this.btnRenunta.Location = new System.Drawing.Point(191, 214);
             this.btnRenunta.Name = "btnRenunta";
             this.btnRenunta.Size = new System.Drawing.Size(180, 70);
-            this.btnRenunta.TabIndex = 3;
             this.btnRenunta.Text = "Renunta";
-            this.btnRenunta.UseVisualStyleBackColor = true;
+            this.btnRenunta.Click += new EventHandler(btnRenunta_Click);
 
             // lblNume
             this.lblNume.AutoSize = true;
@@ -262,7 +265,12 @@ namespace Turismul_Durabil.Panels
             this.comboBox1.Location = new System.Drawing.Point(330, 124);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(311, 38);
-            this.comboBox1.TabIndex = 1;
+
+            foreach (Utilizator utilizator in utilizatoriList)
+            {
+                comboBox1.Items.Add(utilizator.getEmail());
+            }
+
 
             // lblAdminNou
             this.lblAdminNou.AutoSize = true;
@@ -567,6 +575,28 @@ namespace Turismul_Durabil.Panels
 
                 dataGridView1.Rows.RemoveAt(e.RowIndex);
             }
+        }
+
+        private void btnRenunta_Click(object sender, EventArgs e)
+        {
+            tabControl.SelectedTab = tabControl.TabPages[2];
+        }
+
+        private void btnInregistrare_Click(object sender, EventArgs e)
+        {
+            this.form.removePnl("PnlVacanta");
+            this.form.Controls.Add(new PnlInregistrare(form));
+        }
+
+        private void btnTranf_Click(object sender, EventArgs e)
+        {
+
+            string numeleSelectat = comboBox1.Text;
+            int id = controllerUtilizatori.getIdByEmail(numeleSelectat);
+            controllerUtilizatori.setTipCont(id, 0);
+            controllerUtilizatori.update();
+            this.form.removePnl("PnlVacanta");
+            this.form.Controls.Add(new PnlVacanta(form,utilizator));
         }
 
     }
