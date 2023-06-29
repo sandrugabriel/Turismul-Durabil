@@ -70,5 +70,15 @@ namespace Turismul_Durabil.Models
             return this.tipCont;
         }
 
+        public void setTipCont(int tipCont)
+        {
+            this.tipCont = tipCont;
+        }
+
+        public string toSave()
+        {
+            return IdUser.ToString() +"|"+name+"|"+prenume+"|"+email+"|"+password +"|"+tipCont.ToString();
+        }
+
     }
 }

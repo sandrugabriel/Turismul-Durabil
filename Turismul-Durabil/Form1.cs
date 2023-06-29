@@ -19,7 +19,7 @@ namespace Turismul_Durabil
             InitializeComponent();
             Utilizator utilizator = new Utilizator("1061485824|Ana|Maria|maria@gmail.com|maria1234|1");
             Utilizator admin = new Utilizator("1|Sandru|Gabriel|gabi@gmail.com|gabi1234|0");
-            this.Controls.Add(new PnlVacanta(this,utilizator));
+            this.Controls.Add(new PnlVacanta(this,admin));
 
         }
 

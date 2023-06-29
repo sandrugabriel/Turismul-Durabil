@@ -138,8 +138,70 @@ namespace Turismul_Durabil.Controllers
 
         }
 
+        public List<Utilizator> getUtilizators()
+        {
+            List<Utilizator> list = new List<Utilizator>();
 
+            for(int i = 0; i < utilizatori.Count; i++)
+            {
+                if (utilizatori[i].getTipCont() != 0)
+                {
+                    list.Add(utilizatori[i]);
+                }
+            }
 
+            return list;
+        }
+
+        public string toSaveFisier()
+        {
+
+            string t = "";
+
+            for (int i = 0; i < utilizatori.Count; i++)
+            {
+                t += utilizatori[i].toSave() + "\n";
+            }
+
+            return t;
+        }
+
+        public void setTipCont(int id,int tip)
+        {
+
+            for(int i = 0; i < utilizatori.Count; i++)
+            {
+                if (utilizatori[i].getIdUtilizator() == id)
+                {
+                    utilizatori[i].setTipCont(tip);
+                }
+            }
+
+        }
+
+        public void update()
+        {
+            String path = Application.StartupPath + @"/data/Utilizatori.txt";
+            StreamWriter streamWriter = new StreamWriter(path);
+
+            streamWriter.Write(this.toSaveFisier());
+
+            streamWriter.Close();
+        }
+
+        public int getIdByEmail(String email)
+        {
+
+            for(int i = 0; i < utilizatori.Count; i++)
+            {
+                if (utilizatori[i].getEmail().Equals(email))
+                {
+                    return utilizatori[i].getIdUtilizator();
+                }
+            }
+
+            return -1;
+        }
 
     }
 }
