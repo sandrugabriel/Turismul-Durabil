@@ -33,6 +33,7 @@ namespace Turismul_Durabil.Panels
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.PictureBox pctBack;
         private System.Windows.Forms.PictureBox pctNext;
+        private DataGridViewTextBoxColumn cmbIdReverzare;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmbNume;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmbDataStart;
         private System.Windows.Forms.DataGridViewTextBoxColumn cmbDataEnd;
@@ -50,7 +51,11 @@ namespace Turismul_Durabil.Panels
         Timer timer;
 
         List<Vacanta> vacante;
+        List<Rezervare> rezervarileMele;
+
         ControllerVacante controllerVacante;
+        ControllerReverzari controllerReverzari;
+
         int index;
         public PnlVacanta(Form1 form1, Utilizator utilizator1)
         {
@@ -59,7 +64,9 @@ namespace Turismul_Durabil.Panels
             controllerVacante = new ControllerVacante();
             vacante = new List<Vacanta>();
             vacante = controllerVacante.getVacante();
+            controllerReverzari = new ControllerReverzari();
             index = 0;
+            rezervarileMele = new List<Rezervare>();
             this.form.Size = new System.Drawing.Size(1028, 790);
             this.form.MinimumSize = new System.Drawing.Size(1028, 790);
             this.form.MaximumSize = new System.Drawing.Size(1028, 790);
@@ -95,6 +102,7 @@ namespace Turismul_Durabil.Panels
             this.cmbNrPersoane = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbPret = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cmbStergere = new System.Windows.Forms.DataGridViewButtonColumn();
+            cmbIdReverzare = new DataGridViewTextBoxColumn();
             this.tabVacante = new System.Windows.Forms.TabPage();
             this.pctBack = new System.Windows.Forms.PictureBox();
             this.pctNext = new System.Windows.Forms.PictureBox();
@@ -279,6 +287,7 @@ namespace Turismul_Durabil.Panels
             // dataGridView1
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.cmbIdReverzare,
             this.cmbNume,
             this.cmbDataStart,
             this.cmbDataEnd,
@@ -292,12 +301,19 @@ namespace Turismul_Durabil.Panels
             this.dataGridView1.Size = new System.Drawing.Size(950, 384);
             this.dataGridView1.TabIndex = 0;
 
+            // cmbId
+            this.cmbIdReverzare.HeaderText = "Id Rezervare";
+            this.cmbIdReverzare.MinimumWidth = 6;
+            this.cmbIdReverzare.Name = "cmbId";
+            this.cmbIdReverzare.ReadOnly = true;
+            this.cmbIdReverzare.Width = 150;
+
             // cmbNume
             this.cmbNume.HeaderText = "Vacanta";
             this.cmbNume.MinimumWidth = 6;
             this.cmbNume.Name = "cmbNume";
             this.cmbNume.ReadOnly = true;
-            this.cmbNume.Width = 180;
+            this.cmbNume.Width = 100;
 
             // cmbDataStart
             this.cmbDataStart.HeaderText = "Data Start";
@@ -317,21 +333,21 @@ namespace Turismul_Durabil.Panels
             this.cmbNrPersoane.HeaderText = "Nr persoane";
             this.cmbNrPersoane.MinimumWidth = 6;
             this.cmbNrPersoane.Name = "cmbNrPersoane";
-            this.cmbNrPersoane.Width = 125;
+            this.cmbNrPersoane.Width = 80;
 
             // cmbPret
             this.cmbPret.HeaderText = "Pret";
             this.cmbPret.MinimumWidth = 6;
             this.cmbPret.Name = "cmbPret";
             this.cmbPret.ReadOnly = true;
-            this.cmbPret.Width = 110;
+            this.cmbPret.Width = 90;
 
             // cmbStergere
             this.cmbStergere.HeaderText = "Stergere";
             this.cmbStergere.MinimumWidth = 6;
             this.cmbStergere.Name = "cmbStergere";
             this.cmbStergere.ReadOnly = true;
-            this.cmbStergere.Width = 145;
+            this.cmbStergere.Width = 115;
 
             // tabVacante
             this.tabVacante.Controls.Add(this.pctBack);
@@ -390,7 +406,17 @@ namespace Turismul_Durabil.Panels
             this.btnVacantaNou.Text = "Vacanta noua";
 
 
+            rezervarileMele = controllerReverzari.getRezervarileMele(utilizator.getIdUtilizator());
+
+            for (int k = 0; k < rezervarileMele.Count; k++)
+            {
+                string numele = controllerVacante.getNumeleVacantei(rezervarileMele[k].getIdVacanta());
+                dataGridView1.Rows.Add(rezervarileMele[k].getIdRezervare(), numele, rezervarileMele[k].getDateStart(), rezervarileMele[k].getDateEnd(), rezervarileMele[k].getNrPersoane(), rezervarileMele[k].getPret(), "Stergere");
+            }
+            dataGridView1.CellContentClick += DataGridView1_CellContentClick;
+
         }
+
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             CheckBox checkBox = (CheckBox)sender;
@@ -525,6 +551,22 @@ namespace Turismul_Durabil.Panels
             this.form.removePnl("PnlVacanta");
             this.form.Controls.Add(new PnlRervare(form, utilizator, vacanta));
 
+        }
+
+        private void DataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+            if (e.ColumnIndex == cmbStergere.Index)
+            {
+
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                int vacationID = int.Parse(row.Cells["cmbId"].Value.ToString());
+
+                controllerReverzari.delete(vacationID);
+
+                dataGridView1.Rows.RemoveAt(e.RowIndex);
+            }
         }
 
     }

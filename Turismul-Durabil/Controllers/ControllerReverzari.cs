@@ -100,5 +100,52 @@ namespace Turismul_Durabil.Controllers
             return list;
         }
 
+        public int pozID(int id)
+        {
+
+            for (int i = 0; i < rezervari.Count; i++)
+            {
+                if (rezervari[i].getIdRezervare() == id)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+
+        public void stergere(int id)
+        {
+            int p = pozID(id);
+            if (p == pozID(id))
+                rezervari.RemoveAt(p);
+
+        }
+
+        public string toSaveFisier()
+        {
+
+            string t = "";
+
+            for (int i = 0; i < rezervari.Count; i++)
+            {
+                t += rezervari[i].toSave() + "\n";
+            }
+
+            return t;
+        }
+
+        public void delete(int id)
+        {
+            this.stergere(id);
+
+            string path = Application.StartupPath + @"/data/Rezervari.txt";
+            StreamWriter stream = new StreamWriter(path);
+
+            stream.Write(this.toSaveFisier());
+
+            stream.Close();
+        }
+
     }
 }
