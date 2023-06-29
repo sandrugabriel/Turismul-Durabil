@@ -49,6 +49,8 @@ namespace Turismul_Durabil.Panels
         private System.Windows.Forms.Button btnVacantaNou;
         private System.Windows.Forms.Label lblVancantaNou;
         Timer timer;
+        Button btnDeconectare;
+        Button btnIesire;
 
         List<Vacanta> vacante;
         List<Rezervare> rezervarileMele;
@@ -117,6 +119,8 @@ namespace Turismul_Durabil.Panels
             this.lblVancantaNou = new System.Windows.Forms.Label();
             this.btnVacantaNou = new System.Windows.Forms.Button();
             this.timer = new Timer();
+            this.btnDeconectare = new System.Windows.Forms.Button();
+            this.btnIesire = new System.Windows.Forms.Button();
 
             this.Controls.Add(this.tabControl);
 
@@ -398,6 +402,19 @@ namespace Turismul_Durabil.Panels
             this.tabEmail.Name = "tabEmail";
             this.tabEmail.Size = new System.Drawing.Size(984, 782);
             this.tabEmail.Text = utilizator.getEmail();
+            this.tabEmail.Controls.Add(btnDeconectare);
+            this.tabEmail.Controls.Add(btnIesire);
+
+            this.btnDeconectare.Text = "Deconectare";
+            this.btnDeconectare.AutoSize = true;
+            this.btnDeconectare.Location = new Point(285,10);
+            this.btnDeconectare.Click += new EventHandler(btnDeconectare_Click);
+
+            this.btnIesire.Text = "Iesire";
+            this.btnIesire.AutoSize = true;
+            this.btnIesire.Location = new Point(285, 50);
+            this.btnIesire.Click += new EventHandler(btnIesire_Click);
+
 
             // lblVancantaNou
             this.lblVancantaNou.AutoSize = true;
@@ -412,6 +429,7 @@ namespace Turismul_Durabil.Panels
             this.btnVacantaNou.Name = "btnVacantaNou";
             this.btnVacantaNou.Size = new System.Drawing.Size(201, 69);
             this.btnVacantaNou.Text = "Vacanta noua";
+            this.btnVacantaNou.Click += new EventHandler(btnVacantaNou_Click);
 
 
             rezervarileMele = controllerReverzari.getRezervarileMele(utilizator.getIdUtilizator());
@@ -422,6 +440,29 @@ namespace Turismul_Durabil.Panels
                 dataGridView1.Rows.Add(rezervarileMele[k].getIdRezervare(), numele, rezervarileMele[k].getDateStart(), rezervarileMele[k].getDateEnd(), rezervarileMele[k].getNrPersoane(), rezervarileMele[k].getPret(), "Stergere");
             }
             dataGridView1.CellContentClick += DataGridView1_CellContentClick;
+
+        }
+
+        private void btnIesire_Click(object sender, EventArgs e)
+        {
+
+            this.form.Close();
+
+        }
+
+        private void btnDeconectare_Click(object sender, EventArgs e)
+        {
+
+            this.form.removePnl("PnlVacanta");
+            this.form.Controls.Add(new PnlStart(form));
+
+        }
+
+        private void btnVacantaNou_Click(object sender, EventArgs e)
+        {
+
+            this.form.removePnl("PnlVacanta");
+            this.form.Controls.Add(new PnlAddVacanta(form, utilizator));
 
         }
 

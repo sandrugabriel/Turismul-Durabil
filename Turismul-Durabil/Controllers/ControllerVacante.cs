@@ -62,5 +62,48 @@ namespace Turismul_Durabil.Controllers
             return null;
         }
 
+        public Vacanta getByid(int id)
+        {
+
+            for (int i = 0; i < vacante.Count; i++)
+            {
+                if (id == vacante[i].getidVacanta())
+                {
+                    return vacante[i];
+                }
+            }
+
+            return null;
+        }
+
+        public int generareId()
+        {
+
+            Random random = new Random();
+
+            int id = random.Next();
+
+            while (this.getByid(id) != null)
+            {
+
+                id = random.Next();
+
+
+            }
+
+            return id;
+        }
+
+        public void save(string textul)
+        {
+
+            string path = Application.StartupPath + @"/data/Vacante.txt";
+
+            File.AppendAllText(path, textul + "\n");
+
+
+        }
+
+
     }
 }

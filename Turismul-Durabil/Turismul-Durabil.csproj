@@ -55,11 +55,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mockups\MockupRevervare.cs">
+    <Compile Include="Mockups\MockupAddVacanta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mockups\MockupRevervare.Designer.cs">
-      <DependentUpon>MockupRevervare.cs</DependentUpon>
+    <Compile Include="Mockups\MockupAddVacanta.Designer.cs">
+      <DependentUpon>MockupAddVacanta.cs</DependentUpon>
     </Compile>
     <Compile Include="Mockups\MockupVacanta.cs">
       <SubType>Form</SubType>
@@ -70,6 +70,9 @@
     <Compile Include="Models\Rezervare.cs" />
     <Compile Include="Models\Utilizator.cs" />
     <Compile Include="Models\Vacanta.cs" />
+    <Compile Include="Panels\PnlAddVacanta.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Panels\PnlRervare.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -87,8 +90,8 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mockups\MockupRevervare.resx">
-      <DependentUpon>MockupRevervare.cs</DependentUpon>
+    <EmbeddedResource Include="Mockups\MockupAddVacanta.resx">
+      <DependentUpon>MockupAddVacanta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Mockups\MockupVacanta.resx">
       <DependentUpon>MockupVacanta.cs</DependentUpon>
