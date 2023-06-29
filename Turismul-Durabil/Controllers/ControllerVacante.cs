@@ -48,5 +48,19 @@ namespace Turismul_Durabil.Controllers
             return vacante;
         }
 
+        public string getNumeleVacantei(int id)
+        {
+
+            for(int i=0; i<vacante.Count; i++)
+            {
+                if (vacante[i].getidVacanta() == id)
+                {
+                    return vacante[i].getnameVacanta();
+                }
+            }
+
+            return null;
+        }
+
     }
 }

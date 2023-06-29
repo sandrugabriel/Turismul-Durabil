@@ -310,7 +310,7 @@ namespace Turismul_Durabil.Panels
         {
 
             this.form.removePnl("PnlRevervare");
-            string textul = controllerReverzari.generareId().ToString() + "|" + utilizator.getIdUtilizator() + "|" + dateStart.Value + "|" + dateEnd.Value + "|" + nrPersoane.ToString() + "|" + suma.ToString(); 
+            string textul = controllerReverzari.generareId().ToString() + "|" + utilizator.getIdUtilizator() + "|" + vacanta.getidVacanta() +"|" + dateStart.Value + "|" + dateEnd.Value + "|" + nrPersoane.ToString() + "|" + suma.ToString(); 
             controllerReverzari.save(textul);
             this.form.Controls.Add(new PnlVacanta(form, utilizator));
 

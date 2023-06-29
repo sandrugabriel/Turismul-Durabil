@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms.VisualStyles;
 
 namespace Turismul_Durabil.Models
 {
@@ -11,15 +12,17 @@ namespace Turismul_Durabil.Models
 
         private int IdRezervare;
         private int IdUser;
+        private int IdVacanta;
         private DateTime dateStart;
         private DateTime dateEnd;
         private int nrPersoane;
         private double pret;
 
-        public Rezervare(int idRezervare, int idUser, DateTime dateStart, DateTime dateEnd, int nrPersoane, double pret)
+        public Rezervare(int idRezervare,int idVacanta, int idUser, DateTime dateStart, DateTime dateEnd, int nrPersoane, double pret)
         {
             this.IdRezervare = idRezervare;
             this.IdUser = idUser;
+            this.IdVacanta = idVacanta;
             this.dateStart = dateStart;
             this.dateEnd = dateEnd;
             this.nrPersoane = nrPersoane;
@@ -32,10 +35,11 @@ namespace Turismul_Durabil.Models
 
             this.IdRezervare = int.Parse(prop[0]);
             this.IdUser = int.Parse(prop[1]);
-            this.dateStart = DateTime.Parse(prop[2]);
-            this.dateEnd = DateTime.Parse(prop[3]);
-            this.nrPersoane = int.Parse(prop[4]);
-            this.pret = int.Parse(prop[5]);
+            this.IdVacanta= int.Parse(prop[2]);
+            this.dateStart = DateTime.Parse(prop[3]);
+            this.dateEnd = DateTime.Parse(prop[4]);
+            this.nrPersoane = int.Parse(prop[5]);
+            this.pret = int.Parse(prop[6]);
         
         }
 
@@ -47,6 +51,11 @@ namespace Turismul_Durabil.Models
         public int getIdUser()
         {
             return this.IdUser;
+        }
+
+        public int getIdVacanta()
+        {
+            return this.IdVacanta;
         }
 
         public DateTime getDateStart()
@@ -69,7 +78,10 @@ namespace Turismul_Durabil.Models
             return this.pret;
         }
 
-
+        public string toSave()
+        {
+            return IdRezervare.ToString()+"|"+IdUser+"|"+IdVacanta+"|"+dateStart+"|"+dateEnd+"|"+nrPersoane.ToString()+"|"+pret.ToString();
+        }
 
     }
 }

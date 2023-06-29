@@ -62,7 +62,10 @@ namespace Turismul_Durabil.Models
             return this.nrLocuri;
         }
 
-
+        public void setnrLocuri(int nrLocuri)
+        {
+            this.nrLocuri = nrLocuri;
+        }
 
     }
 }
