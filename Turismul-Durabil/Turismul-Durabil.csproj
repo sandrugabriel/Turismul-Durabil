@@ -55,11 +55,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Mockups\MockupInregistrare.cs">
+    <Compile Include="Mockups\MockupVacanta.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Mockups\MockupInregistrare.Designer.cs">
-      <DependentUpon>MockupInregistrare.cs</DependentUpon>
+    <Compile Include="Mockups\MockupVacanta.Designer.cs">
+      <DependentUpon>MockupVacanta.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Rezervare.cs" />
     <Compile Include="Models\Utilizator.cs" />
@@ -70,13 +70,16 @@
     <Compile Include="Panels\PnlStart.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Panels\PnlVacanta.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Mockups\MockupInregistrare.resx">
-      <DependentUpon>MockupInregistrare.cs</DependentUpon>
+    <EmbeddedResource Include="Mockups\MockupVacanta.resx">
+      <DependentUpon>MockupVacanta.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Turismul_Durabil.Models;
 using Turismul_Durabil.Panels;
 
 namespace Turismul_Durabil
@@ -16,8 +17,9 @@ namespace Turismul_Durabil
         public Form1()
         {
             InitializeComponent();
-
-            this.Controls.Add(new PnlStart(this));
+            Utilizator utilizator = new Utilizator("1061485824|Ana|Maria|maria@gmail.com|maria1234|1");
+            Utilizator admin = new Utilizator("1|Sandru|Gabriel|gabi@gmail.com|gabi1234|0");
+            this.Controls.Add(new PnlVacanta(this,utilizator));
 
         }
 

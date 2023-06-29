@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Turismul_Durabil.Controllers;
+using Turismul_Durabil.Models;
 
 namespace Turismul_Durabil.Panels
 {
@@ -133,7 +134,9 @@ namespace Turismul_Durabil.Panels
                 if (controllerUtilizatori.verifAut(txtEmail.Text, txtParola.Text))
                 {
                     this.form.removePnl("PnlStart");
-
+                    
+                    Utilizator utilizator = controllerUtilizatori.ClientByEmaiParo(txtEmail.Text,txtParola.Text);
+                    this.form.Controls.Add(new PnlVacanta(form, utilizator));
                 }
                 else
                 {
